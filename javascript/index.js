@@ -1,13 +1,19 @@
-var $carousel = $('#content-carousel');
+var $carousel = $('#content-carousel'),
+    $menuEls = $('#menu li');
+
 $carousel.carousel({
   interval: false
 });
 
-var $menuEls = $('#menu li');
 $menuEls.on('click', function(e,d) {
+  var $el, slide;
   $menuEls.removeClass('active');
-  var $el = $(e.target).parent();
+  $el = $(e.target).parent();
   $el.addClass('active');
-  var slide = $el.data().slideTo;
+  slide = $el.data().slideTo;
   $carousel.carousel(slide);
+});
+
+$('#brand').click(function(){
+  $('#menu li').first().find('a').trigger('click');
 });
